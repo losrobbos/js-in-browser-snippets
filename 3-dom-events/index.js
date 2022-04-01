@@ -8,7 +8,3 @@ button.addEventListener("click", (e) => {
   console.log( "Event: ", e )
 })
 
-
-
-// const buttonsAll = document.querySelectorAll(".btnSubmit")
-// console.log( "Buttons: ", buttonsAll)
