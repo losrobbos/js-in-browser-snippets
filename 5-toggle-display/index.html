@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle Display</title>
+  <script defer src="index.js"></script>
+  <style>
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .container {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .item {
+      padding: 10px;
+      min-width: 120px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button class="btnShowHide">Hide Cities</button>
+    <div class="cities">
+      <div class="item">Paris</div>
+      <div class="item">London</div>
+      <div class="item">Rom</div>
+      <div class="item">Athen</div>
+      <div class="item">Sevilla</div>
+      <div class="item">Seoul</div>
+    </div>
+    <div class="counter">0</div>
+  </div>
+  
+</body>
+</html>
