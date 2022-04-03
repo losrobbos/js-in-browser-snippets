@@ -15,12 +15,8 @@ starsAll.forEach( star => {
   star.addEventListener("click", (event) => {
     const starClicked = event.target
 
-    // check WHICH star (=index !) was clicked by checking CSS variable on the item (=> --i)
-    const indexString = getComputedStyle(starClicked).getPropertyValue('--i') // value between 0 and 4 !
-
-    // CSS properties are always strings 
-    // => so we need to convert it to a number first if we wanna "calculate" with it
-    const indexNum = parseInt(indexString) 
+    // get index position of clicked star within array of stars...
+    const indexNum = starsAll.indexOf( starClicked )
 
     // grab a slice until that item from all stars
     const starsToColor = starsAll.slice(0, indexNum+1)
