@@ -18,8 +18,8 @@ starsAll.forEach( star => {
     // get index position of clicked star within array of stars...
     const indexNum = starsAll.indexOf( starClicked )
 
-    // grab a slice until that item from all stars
-    const starsToColor = starsAll.slice(0, indexNum+1)
+    // grab a slice of all stars until clicked star (including clicked star => so we need index+1)
+    const starsRating = starsAll.slice(0, indexNum+1)
 
     // uncolor all star items (= delete any previous rating)
     starsAll.forEach( star => {
@@ -27,7 +27,7 @@ starsAll.forEach( star => {
     })
 
     // loop through EACH star to color => and give it rating color
-    starsToColor.forEach( star => {
+    starsRating.forEach( star => {
       star.style.backgroundColor = "yellow"
     })
 
