@@ -1,7 +1,9 @@
 
 // imoort lib => impotiert DEFAULT export
 // import { name } => importiert NAMED exports
-import lib, { sum, multiply } from './lib.js' // importing a DEFAULT EXPORT
+
+// importing both: a DEFAULT EXPORT + NAMED exports
+import lib, { sum, multiply } from './lib.js' 
 
 console.log("Module ist daaaaaa! Hallo!")
 
