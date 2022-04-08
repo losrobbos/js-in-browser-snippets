@@ -1,7 +1,10 @@
 
 // imoort lib => impotiert DEFAULT export
 // import { name } => importiert NAMED exports
-import lib, { sum, multiply } from './lib.js' // importing a DEFAULT EXPORT
+import lib from './lib.js' // importing a DEFAULT EXPORT
+
+// destructure / extract functions from library I want to use 
+const { sum, multiply } = lib
 
 console.log("Module ist daaaaaa! Hallo!")
 
