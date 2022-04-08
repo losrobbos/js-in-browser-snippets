@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The 3 Types of visibility & DOM</title>
+  <script defer src="./index.js"></script>
+  <style>
+
+    *, ::before, ::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .item {
+      width: 200px;
+      height: 150px;
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;      
+      display: grid;
+      place-items: center;
+      text-transform: uppercase;
+      background: blue;
+      cursor: pointer;
+    }
+
+    .display {
+      display: none
+    }
+
+    .visibility {
+      visibility: hidden;
+    }
+
+    .opacity {
+      opacity: 0
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <h2>Visibilities in the DOM</h2>
+  <div>
+    <div class="item display">Display</div>
+    <div class="item visibility">Visibility</div>
+    <div class="item opacity">Opacity</div>
+  </div>
+  
+</body>
+</html>

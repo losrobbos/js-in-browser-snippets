@@ -4,7 +4,7 @@
 const divPerson = document.querySelector(".person")
 const button = document.querySelector("button")
 
-
+// DATA
 const person = {
   name: "Rami",
   specialization: "HTML / CSS"
