@@ -25,11 +25,12 @@ todos.forEach((todo) => {
   // convert todo DATA to HTML element
   const divTodo = document.createElement("div") // div NODE
 
+  // SET styles manually, item by item
   // divTodo.style.display = "flex"
   // divTodo.style.justifyContent = "space-around"
   // divTodo.style.height = "30px"
 
-  // BASE style => same for ALL items
+  // set multiple styles "CSS like" all at one
   divTodo.style.cssText = `
     display: flex;
     justify-content: space-between;
@@ -68,13 +69,31 @@ todos.forEach((todo) => {
   // create SUBcategories
   const spanCategoryTitle = document.createElement("span")
   const ulSubCats = document.createElement("ul")
+
+  spanCategoryTitle.innerText = todo.category
   spanCategoryTitle.style.cursor = "pointer"
-  
+
   ulSubCats.style.display = "none"
 
-  // HIDEN / SHOWN => display: none / block
-  spanCategoryTitle.addEventListener("click", (evt) => {
+  // fill subcategories with loop
+  // build up LI html array
+  const arrLis = todo.subcategories.map((subcat) => {
+    return `<li>${subcat}</li>`
+  })
+  const strLis = arrLis.join("") // merges all LI strings in arrayto ONE string
+  ulSubCats.innerHTML = strLis
 
+  // build category item
+  divCategory.appendChild(spanCategoryTitle)
+  divCategory.appendChild(ulSubCats)
+
+  // add subitem to todo row
+  divTodo.appendChild(divTitle)
+  divTodo.appendChild(divCategory)
+  divTodo.appendChild(divStatus)
+
+  // hide / show subcategories
+  spanCategoryTitle.addEventListener("click", (evt) => {
     const spanClicked = evt.target
     const ul = spanClicked.nextSibling
     const displayCurrent = ul.style.display
@@ -83,25 +102,6 @@ todos.forEach((todo) => {
     // ternary is often to toggle string values (everything not true / false)
     ulSubCats.style.display = displayCurrent === "block" ? "none" : "block"
   })
-
-  // build up LI html array
-  const arrLis = todo.subcategories.map((subcat) => {
-    return `<li>${subcat}</li>`
-  })
-  const strLis = arrLis.join("") // merges all LI strings in arrayto ONE string
-  ulSubCats.innerHTML = strLis
-
-  // fill subcategories with loop
-  spanCategoryTitle.innerText = todo.category
-
-  // build category item
-  divCategory.appendChild( spanCategoryTitle )
-  divCategory.appendChild( ulSubCats )
-
-  // add subitem to todo row
-  divTodo.appendChild(divTitle)
-  divTodo.appendChild(divCategory)
-  divTodo.appendChild(divStatus)
 
   // switch status if status span is clicked
   divStatus.addEventListener("click", () => {
@@ -125,6 +125,9 @@ todos.forEach((todo) => {
   })
 
   // innerHTML makes sense if you want to have NESTED info for an item
+  // that is just for DISPLAYING (but no event listeners)
+  // in case you wanna use EVENT LISTENERS => prefer creating DOM nodes with createElement 
+
   // divTodo.innerHTML = `
   //   <span >${todo.title}</span>
   //   <span >${todo.category}</span>
