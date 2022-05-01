@@ -1,11 +1,17 @@
 # Plan
 
 ## OPEN
-- [] On click on TITLE => expand the item with details (=sublist)
-- [] On click on STATUS => toggle status between OPEN, ONGOING, DONE
+
+- All done :)
 
 ## DONE 
+
+### Active Version - change status when clicking
+- [X] On click on TITLE => expand the item with details (=sublist)
+- [X] On click on STATUS => toggle status between OPEN, ONGOING, DONE
 - [X] Style with Javascript only
+
+### Base Version - create & style items
 - [X] Create a conainer for todos
 - [X] Place the container in the center using JS only
 - [X] Have an array of todos
