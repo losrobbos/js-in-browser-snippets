@@ -1,3 +1,4 @@
+import { set } from 'lodash';
 import { useState } from 'react';
 import './App.css';
 
@@ -10,7 +11,7 @@ function App() {
   }
 
   // NO STATE array !
-  const [arrPeople, setArrPeople] = useState([
+  const [arrPeople, setArrPeople] = useState([ 
     { _id: "1", name: "Hamzah" },
     { _id: "2", name: "Michael" },
     { _id: "3", name: "Susan" },
@@ -22,7 +23,10 @@ function App() {
 
   // EVENT LISTENERS
   const onAddPerson = () => {
-    console.log("Item clicked")
+    
+    const name = prompt("New name pleeeze: ")
+
+    if(!name) return // exit if no name given
 
     // => IMMUTABILITY Pattern
     // arrPeople.push({ id: "4", name: "Alaa" }) // this is not allowed! no direct mutating of state
@@ -31,11 +35,9 @@ function App() {
     // const arrPeopleCopy = [...arrPeople]
     // arrPeopleCopy.push( { id: "4", name: "Alaa" } )
     const arrPeopleCopy = [
-      ...arrPeople,
-      { _id: Date.now().toString(), name: "Alaa" },
+      ...arrPeople, // take all OLD items
+      { _id: Date.now().toString(), name: name }, // merge with NEW item
     ]
-
-    console.log(arrPeopleCopy)
 
     // OVERWRITE state with COPY
     // set function is the TRIGGER for the DOM UPDATE
@@ -44,19 +46,39 @@ function App() {
 
   // delete some person on click
   const onDeletePerson = (idToDelete) => {
-    console.log("Deleting person:", idToDelete)
 
     // filter out person we wanna delete => filter creates a NEW array
     const arrPeopleKeep = arrPeople.filter(person => person._id !== idToDelete )
-    console.log(arrPeopleKeep)
 
     // update state and DOM
     setArrPeople( arrPeopleKeep )
   }
 
+  // UPDATE an object in an array
+  const editPerson = (idToUpdate) => {
+    const nameNew = prompt("New name pleeeeze")
+    console.log(nameNew)
+
+    // ONLY update if user confirmed
+    if(!nameNew) return
+
+    // update
+
+    const arrPeopleUpdated = arrPeople.map( person => {
+      return person._id === idToUpdate ? {...person, name: nameNew } : person  
+    })
+
+    // update state & re-render DOM
+    setArrPeople( arrPeopleUpdated )
+  }
+
   // convert ARRAY of OBJECTs to ARRAY of JSX
   const jsxPeople = arrPeople.map( (person) => (
-    <div onDoubleClick={ () => onDeletePerson(person._id) } key={ person._id } >{person.name}</div>
+    <div key={ person._id } >
+      <span>{person.name}</span>
+      <button onClick={ () => editPerson( person._id ) }>E</button>
+      <button onClick={ () => onDeletePerson(person._id) }>X</button>
+    </div>
   ))
 
   // JSX => Javascript XML
