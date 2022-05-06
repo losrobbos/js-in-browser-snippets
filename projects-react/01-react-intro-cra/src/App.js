@@ -24,24 +24,39 @@ function App() {
   const onAddPerson = () => {
     console.log("Item clicked")
 
-    // the following LINE IS WRONG!
-    // we tried to change the state array DIRECTLY!
-    // we are NOT allowed to MUTATE a state variable DIRECTLY
     // => IMMUTABILITY Pattern
-    // arrPeople.push({ id: "4", name: "Alaa" })
+    // arrPeople.push({ id: "4", name: "Alaa" }) // this is not allowed! no direct mutating of state
     
     // we create a COPY of the state variable and mutate the COPY!
-    const arrPeopleCopy = [...arrPeople]
-    arrPeopleCopy.push( { id: "4", name: "Alaa" } )
+    // const arrPeopleCopy = [...arrPeople]
+    // arrPeopleCopy.push( { id: "4", name: "Alaa" } )
+    const arrPeopleCopy = [
+      ...arrPeople,
+      { _id: Date.now().toString(), name: "Alaa" },
+    ]
+
+    console.log(arrPeopleCopy)
 
     // OVERWRITE state with COPY
     // set function is the TRIGGER for the DOM UPDATE
     setArrPeople( arrPeopleCopy )
   }
 
+  // delete some person on click
+  const onDeletePerson = (idToDelete) => {
+    console.log("Deleting person:", idToDelete)
+
+    // filter out person we wanna delete => filter creates a NEW array
+    const arrPeopleKeep = arrPeople.filter(person => person._id !== idToDelete )
+    console.log(arrPeopleKeep)
+
+    // update state and DOM
+    setArrPeople( arrPeopleKeep )
+  }
+
   // convert ARRAY of OBJECTs to ARRAY of JSX
-  const jsxPeople = arrPeople.map( (person, index) => (
-    <div key={ index } >{person.name}</div>
+  const jsxPeople = arrPeople.map( (person) => (
+    <div onDoubleClick={ () => onDeletePerson(person._id) } key={ person._id } >{person.name}</div>
   ))
 
   // JSX => Javascript XML
