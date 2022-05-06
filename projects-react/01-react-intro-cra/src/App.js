@@ -55,7 +55,7 @@ function App() {
   }
 
   // UPDATE an object in an array
-  const editPerson = (idToUpdate) => {
+  const onEditPerson = (idToUpdate) => {
     const nameNew = prompt("New name pleeeeze")
     console.log(nameNew)
 
@@ -72,11 +72,21 @@ function App() {
     setArrPeople( arrPeopleUpdated )
   }
 
+    const onUpdateAll = () => {
+      const arrPeopleAllChanged = arrPeople.map((person) => ({
+        ...person,
+        name: person.name + " DCI",
+      }))
+      setArrPeople(arrPeopleAllChanged)
+    }
+
+
+
   // convert ARRAY of OBJECTs to ARRAY of JSX
   const jsxPeople = arrPeople.map( (person) => (
     <div key={ person._id } >
       <span>{person.name}</span>
-      <button onClick={ () => editPerson( person._id ) }>E</button>
+      <button onClick={ () => onEditPerson( person._id ) }>E</button>
       <button onClick={ () => onDeletePerson(person._id) }>X</button>
     </div>
   ))
@@ -87,6 +97,14 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2>Hello from state, dudes</h2>
+        {/* LIST OF PEOPLE */}
+        <div style={{ margin: "10px", border: "1px solid #ccc" }}>
+          {jsxPeople}
+        </div>
+
+        <button onClick={onAddPerson}>Add Person</button>
+        <button onClick={onUpdateAll}>Update all people</button>
+
         {/* render the string "hallo" into HTML */}
         {/* <div>{"hallo"}</div>
         <div>{1 + 2}</div>
@@ -100,14 +118,6 @@ function App() {
           {person.name} {person.profession}
         </div>
         <div>{arrPeople[0].name}</div> */}
-
-        {/* LIST OF PEOPLE */}
-        <div style={{ margin: "10px", border: "1px solid #ccc" }}>
-          {jsxPeople}
-        </div>
-
-        <button onClick={onAddPerson}>Add Person</button>
-
       </header>
     </div>
   )
