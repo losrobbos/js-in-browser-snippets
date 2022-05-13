@@ -1,0 +1,19 @@
+
+.todo-item {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-todo-new {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.form-todo-new input {
+  padding: 10px;
+}

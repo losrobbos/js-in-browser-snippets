@@ -17,7 +17,6 @@ export const TodoList = ({ todos, addTodo, deleteTodo }) => {
     <div className="todo-list" style={{ border: "1px solid #ccc" }}>
       <h2>Todo List will come here...</h2>
       { jsxTodos }
-      <button onClick={addTodo}>Add Todo</button>
     </div>
   )
 
